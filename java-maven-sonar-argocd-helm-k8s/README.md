@@ -67,32 +67,43 @@ This end-to-end Jenkins pipeline will automate the entire CI/CD process for a Ja
 
 
 **Software Development Pipeline Overview**
+
 Introduction
+
 This document provides an overview of our software development pipeline, highlighting the key steps and processes involved from source code management to deployment. Our pipeline is designed to ensure efficient code delivery, high-quality builds, and security checks before deploying Docker images to the Elastic Container Registry (ECR).
 
 **1. Source Code Management**
+
 We use a Git repository to manage our source code. Developers push their code changes to this repository, which acts as the central codebase for our project.
 
 **2. Jenkins Pipeline**
+
 2.1 Webhook Integration
+
 We have configured webhooks between our Git repository and Jenkins. Whenever a developer pushes code changes to the repository, Jenkins is automatically triggered to start the pipeline.
 
 2.2 Build Process
+
 Upon receiving the webhook trigger, Jenkins initiates the build process using Maven. Maven compiles the source code, manages dependencies, and generates artifacts.
 
 2.3 Unit Testing
+
 Once the build is successful, the pipeline proceeds to perform unit testing. Unit tests ensure that individual components of the codebase function correctly and help maintain code quality.
 
 2.4 Static Code Analysis
+
 Static code analysis tools are employed to scan the code for potential issues such as code style violations, code smells, and maintainability concerns. Any identified issues are reported, and the pipeline pauses for resolution if necessary.
 
 2.5 Security Testing (SAST/DAST)
+
 To ensure the security of our application, both Static Application Security Testing (SAST) and Dynamic Application Security Testing (DAST) are performed. These tests help identify vulnerabilities and security weaknesses within the codebase.
 
 2.6 Docker Image Creation
+
 Assuming the code passes all previous stages successfully, the pipeline proceeds to create a Docker image of the application. This Docker image encapsulates the application and its dependencies, ensuring consistency in deployment.
 
 2.7 Push to Elastic Container Registry (ECR)
+
 Finally, the Docker image is pushed to our Elastic Container Registry (ECR). ECR acts as a secure repository for storing Docker images, making them readily available for deployment to various environments.
 
 **Conclusion**
@@ -101,12 +112,14 @@ Our software development pipeline is a well-structured and automated process tha
 
 
 **Image Deployment Process Using ArgoCD and Argo Image Updater**
+
 This document outlines our image deployment process using ArgoCD and Argo Image Updater within our Kubernetes (K8s) cluster. This seamless workflow ensures that new Docker images from our Elastic Container Registry (ECR) are automatically deployed to our K8s environment.
 
 Introduction
 In our continuous deployment (CD) pipeline, we use ArgoCD and Argo Image Updater to manage and automate the deployment of Docker images to our Kubernetes cluster. This process ensures that our applications are always up to date with the latest image versions available in our ECR.
 
 **1. Elastic Container Registry (ECR)**
+
 Our ECR serves as a centralized repository for Docker images, holding various versions of our application images.
 
 **2. Argo Image Updater**
