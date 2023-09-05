@@ -66,14 +66,14 @@ This end-to-end Jenkins pipeline will automate the entire CI/CD process for a Ja
 
 
 
-Software Development Pipeline Overview
+**Software Development Pipeline Overview**
 Introduction
 This document provides an overview of our software development pipeline, highlighting the key steps and processes involved from source code management to deployment. Our pipeline is designed to ensure efficient code delivery, high-quality builds, and security checks before deploying Docker images to the Elastic Container Registry (ECR).
 
-1. Source Code Management
+**1. Source Code Management**
 We use a Git repository to manage our source code. Developers push their code changes to this repository, which acts as the central codebase for our project.
 
-2. Jenkins Pipeline
+**2. Jenkins Pipeline**
 2.1 Webhook Integration
 We have configured webhooks between our Git repository and Jenkins. Whenever a developer pushes code changes to the repository, Jenkins is automatically triggered to start the pipeline.
 
@@ -95,33 +95,33 @@ Assuming the code passes all previous stages successfully, the pipeline proceeds
 2.7 Push to Elastic Container Registry (ECR)
 Finally, the Docker image is pushed to our Elastic Container Registry (ECR). ECR acts as a secure repository for storing Docker images, making them readily available for deployment to various environments.
 
-Conclusion
+**Conclusion**
 Our software development pipeline is a well-structured and automated process that ensures code quality, security, and consistency in image deployment. By leveraging Git for source code management, Jenkins for automation, and various testing and analysis tools, we maintain a robust development pipeline that helps us deliver reliable software with confidence.
 
 
 
-Image Deployment Process Using ArgoCD and Argo Image Updater
+**Image Deployment Process Using ArgoCD and Argo Image Updater**
 This document outlines our image deployment process using ArgoCD and Argo Image Updater within our Kubernetes (K8s) cluster. This seamless workflow ensures that new Docker images from our Elastic Container Registry (ECR) are automatically deployed to our K8s environment.
 
 Introduction
 In our continuous deployment (CD) pipeline, we use ArgoCD and Argo Image Updater to manage and automate the deployment of Docker images to our Kubernetes cluster. This process ensures that our applications are always up to date with the latest image versions available in our ECR.
 
-1. Elastic Container Registry (ECR)
+**1. Elastic Container Registry (ECR)**
 Our ECR serves as a centralized repository for Docker images, holding various versions of our application images.
 
-2. Argo Image Updater
+**2. Argo Image Updater**
 2.1 Configuration
 Argo Image Updater is configured to continuously monitor our ECR. It checks for the availability of new Docker image versions and triggers the deployment process when a new image is detected.
 
 2.2 Image Push to Git Repository
 Upon identifying a new image in the ECR, Argo Image Updater automatically pushes the image information to our Git repository. This update includes details about the new image version, ensuring that our Git repository reflects the latest image references.
 
-3. ArgoCD
+**3. ArgoCD**
 3.1 Deployment Configuration
 ArgoCD is configured to monitor the Git repository for changes. When Argo Image Updater pushes an updated image reference to the repository, ArgoCD detects this change and initiates the deployment process.
 
 3.2 Docker Image Deployment
 ArgoCD takes the updated Docker image reference from the Git repository and deploys the corresponding services within our Kubernetes cluster. This deployment process ensures that our K8s applications are always running the latest, up-to-date Docker images.
 
-Conclusion
+**Conclusion**
 Our integration of Argo Image Updater and ArgoCD streamlines the deployment process for our Kubernetes applications. By continuously monitoring our ECR for new image versions and automating the update and deployment workflow, we maintain a highly efficient and reliable CD pipeline that keeps our applications in sync with the latest Docker images, providing seamless updates and ensuring the stability and security of our services.
